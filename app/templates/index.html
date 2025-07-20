@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HerdKnowledge</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+</head>
+<body>
+    <h1>Ask about Colorado Harvest Data</h1>
+    <form hx-post="/ask" hx-target="#results" hx-swap="innerHTML">
+        <input type="text" name="question" placeholder="e.g. Elk harvest in 2023" required />
+        <button type="submit">Ask</button>
+    </form>
+    <div id="results">
+        <!-- results will appear here -->
+    </div>
+</body>
+</html>

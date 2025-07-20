@@ -1,0 +1,15 @@
+<h2>Results for: "{{ question }}"</h2>
+<table border="1">
+    <tr>
+        <th>State</th><th>Species</th><th>Unit</th><th>Total Harvest</th><th>Success Rate</th>
+    </tr>
+    {% for row in results %}
+    <tr>
+        <td>{{ row[0] }}</td>
+        <td>{{ row[1] }}</td>
+        <td>{{ row[2] }}</td>
+        <td>{{ row[3] }}</td>
+        <td>{{ row[4] }}%</td>
+    </tr>
+    {% endfor %}
+</table>
