@@ -5,18 +5,21 @@ from fastapi.templating import Jinja2Templates
 import duckdb
 import os
 
+from app.bootstrap import fetch_duckdb_from_s3
+
+DB_PATH = fetch_duckdb_from_s3()
+
 app = FastAPI()
 
 # Mount static files and template engine
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="app/templates")
 
-# Replace with your actual DuckDB path
-DB_PATH = os.getenv("DUCKDB_PATH", "data/database/herd_data.duckdb")
 
 @app.get("/", response_class=HTMLResponse)
 def read_form(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
+
 
 @app.post("/ask", response_class=HTMLResponse)
 def ask_question(request: Request, question: str = Form(...)):
@@ -31,8 +34,7 @@ def ask_question(request: Request, question: str = Form(...)):
     result = conn.execute(sql).fetchall()
     conn.close()
 
-    return templates.TemplateResponse("partials/result.html", {
-        "request": request,
-        "question": question,
-        "results": result
-    })
+    return templates.TemplateResponse(
+        "partials/result.html",
+        {"request": request, "question": question, "results": result},
+    )
