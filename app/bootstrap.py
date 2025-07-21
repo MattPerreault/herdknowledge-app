@@ -23,8 +23,6 @@ def fetch_duckdb_from_s3():
 
     try:
         s3.download_file(bucket, key, local_path)
-        print(f"✅ Download complete: {os.path.exists(local_path)}")
-        print(f"📦 File size: {os.path.getsize(local_path)} bytes")
     except Exception as e:
         print(f"Failed to download from S3 {e}")
 
