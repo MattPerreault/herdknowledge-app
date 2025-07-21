@@ -1,7 +1,7 @@
 import os
 import boto3
 
-aws_access_key_id = os.environ["AWS_ACCESS_KEY_ID"]
+aws_access_key_id = os.environ["AWS_ACCESS_KEY"]
 aws_secret_access_key = os.environ["AWS_SECRET_ACCESS_KEY"]
 
 
@@ -19,7 +19,6 @@ def fetch_duckdb_from_s3():
 
     folder = os.path.dirname(local_path)
     if not os.path.exists(folder):
-        print(f"📂 Creating directory: {folder}")
         os.makedirs(folder, exist_ok=True)
 
     try:
