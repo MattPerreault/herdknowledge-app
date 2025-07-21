@@ -28,7 +28,7 @@ def ask_question(request: Request, question: str = Form(...)):
         SELECT state, species, unit, total_harvest, percent_success
         FROM harvest_production
         WHERE species = 'elk' AND year = 2023
-        LIMIT 5
+        LIMIT 5;
     """
     print("🔍 DB_PATH:", DB_PATH)
     print("🧠 Tables in database:")
