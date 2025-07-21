@@ -4,3 +4,4 @@ duckdb
 jinja2
 aiofiles
 python-multipart
+boto3
