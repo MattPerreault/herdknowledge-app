@@ -1,9 +1,17 @@
 import os
 import boto3
 
+aws_access_key_id = os.environ["AWS_ACCESS_KEY_ID"]
+aws_secret_access_key = os.environ["AWS_SECRET_ACCESS_KEY"]
+
 
 def fetch_duckdb_from_s3():
-    s3 = boto3.client("s3")
+    s3 = boto3.client(
+        "s3",
+        aws_access_key_id=aws_access_key_id,
+        aws_secret_access_key=aws_secret_access_key,
+        region_name="us-east-1",
+    )
 
     bucket = os.environ["HERD_KNOWLEDGE_BUCKET"]
     key = os.environ["DUCKDB_S3_KEY"]
