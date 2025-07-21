@@ -30,7 +30,15 @@ def ask_question(request: Request, question: str = Form(...)):
         WHERE species = 'elk' AND year = 2023
         LIMIT 5;
     """
-    conn = duckdb.connect(DB_PATH)
+    print("🔍 DB_PATH:", DB_PATH)
+    print("🧠 Tables in database:")
+    try:
+        conn = duckdb.connect(DB_PATH)
+        print(conn.execute("SHOW TABLES").fetchall())
+    except Exception as e:
+        print("❌ Failed to open DuckDB or list tables:", e)
+        raise
+
     result = conn.execute(sql).fetchall()
     conn.close()
 
