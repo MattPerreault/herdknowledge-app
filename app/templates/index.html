@@ -6,13 +6,37 @@
     <script src="https://unpkg.com/htmx.org@1.9.2"></script>
 </head>
 <body>
-    <h1>Ask about Colorado Harvest Data</h1>
+    <h1>Ask about Colorado Game Harvest or Population Data</h1>
     <form hx-post="/ask" hx-target="#results" hx-swap="innerHTML">
         <input type="text" name="question" placeholder="e.g. Elk harvest in 2023" required />
         <button type="submit">Ask</button>
+        <span id="spinner">⏳ Searching...</span>
     </form>
+
+    <p>
+        Try:
+        <span class="example-query" onclick="setQuestion('Elk harvest in 2023')">Elk harvest in 2023</span>
+        <span class="example-query" onclick="setQuestion('Deer population estimates for 2022')">Deer population estimates for 2022</span>
+    </p> 
+
+    <script>
+        function setQuestion(text) {
+            const input = document.querySelector('input[name="question"]');
+            input.value = text;
+        }
+    </script>
+
     <div id="results">
         <!-- results will appear here -->
     </div>
+    
+    <script>
+        document.body.addEventListener('htmx:request', function() {
+            document.getElementById('spinner').style.display = 'inline';
+        });
+        document.body.addEventListener('htmx:afterOnLoad', function() {
+            document.getElementById('spinner').style.display = 'none';
+        });
+    </script>
 </body>
 </html>

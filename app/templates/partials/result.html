@@ -1,15 +1,28 @@
 <h2>Results for: "{{ question }}"</h2>
+
+{% if error %}
+<div class="error-message">{{ error }}</div>
+{% endif %}
+
+{% if rows %}
 <table border="1">
-    <tr>
-        <th>State</th><th>Species</th><th>Unit</th><th>Total Harvest</th><th>Success Rate</th>
-    </tr>
-    {% for row in results %}
-    <tr>
-        <td>{{ row[0] }}</td>
-        <td>{{ row[1] }}</td>
-        <td>{{ row[2] }}</td>
-        <td>{{ row[3] }}</td>
-        <td>{{ row[4] }}%</td>
-    </tr>
-    {% endfor %}
+    <thead>
+        <tr>
+            {% for col in columns %}
+                <th>{{ col }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in rows %}
+        <tr>
+            {% for cell in row %}
+                <td>{{ cell }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
 </table>
+{% else %}
+    <p>No results found or query failed.</p>
+{% endif %}
