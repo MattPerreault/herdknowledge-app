@@ -44,3 +44,24 @@ th, td {
     text-align: left;
     border-bottom: 1px solid #ccc;
 }
+
+.example-query {
+    display: inline-block;
+    margin: 4px 6px;
+    padding: 6px 10px;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #333;
+    text-decoration: underline;
+}
+
+.example-query:hover {
+    background-color: #e0e0e0;
+}
+
+.error-message {
+    color: red;
+    font-weight: bold;
+    margin-top: 1em;
+}
