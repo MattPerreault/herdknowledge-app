@@ -1,4 +1,12 @@
-<h2 class="text-xl font-semibold text-hk-accent mb-4">Results for: "{{ question }}"</h2>
+<div class="flex justify-start mb-4">
+    {% if "elk" in question.lower() %}
+        <img src="/static/icons/bull_elk.png" alt="Bull Elk" class="w-32 h-auto rounded-md" />
+    {% elif "pronghorn" in question.lower() %}
+        <img src="/static/icons/pronghorn.png" alt="Pronhorn Antelope" class="w-32 h-auto rounded-md" />
+    {% elif "deer" in question.lower() or "mule deer" in question.lower() %}
+        <img src="/static/icons/mule_deer.png" alt="Mule Deer" class="w-32 h-auto rounded-md" />
+    {% endif %}
+</div>
 
 {% if error %}
   <div class="text-hk-link font-semibold mt-4">{{ error }}</div>

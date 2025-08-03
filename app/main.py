@@ -40,8 +40,6 @@ def ask_question(request: Request, question: str = Form(...)):
 
     try:
         sql = generate_sql_from_question(question)
-        print(f"Generated SQL for safety check: {sql}")
-
         if not is_safe_sql(sql):
             return templates.TemplateResponse(
                 "partials/result.html",
