@@ -1,28 +1,30 @@
-<h2>Results for: "{{ question }}"</h2>
+<h2 class="text-xl font-semibold text-hk-accent mb-4">Results for: "{{ question }}"</h2>
 
 {% if error %}
-<div class="error-message">{{ error }}</div>
+  <div class="text-hk-link font-semibold mt-4">{{ error }}</div>
 {% endif %}
 
 {% if rows %}
-<table border="1">
-    <thead>
+  <div class="overflow-x-auto max-h-[500px] overflow-y-auto border border-gray-300 rounded-lg shadow bg-white">
+    <table class="min-w-[600px] w-full text-sm text-left text-hk-text">
+      <thead class="bg-hk-primary text-white sticky top-0 z-10">
         <tr>
-            {% for col in columns %}
-                <th>{{ col }}</th>
-            {% endfor %}
+          {% for col in columns %}
+            <th scope="col" class="px-4 py-3 font-medium border-b border-hk-secondary">{{ col }}</th>
+          {% endfor %}
         </tr>
-    </thead>
-    <tbody>
+      </thead>
+      <tbody class="divide-y divide-hk-secondary">
         {% for row in rows %}
-        <tr>
+          <tr class="hover:bg-hk-background">
             {% for cell in row %}
-                <td>{{ cell }}</td>
+              <td class="px-4 py-2 align-top">{{ cell }}</td>
             {% endfor %}
-        </tr>
+          </tr>
         {% endfor %}
-    </tbody>
-</table>
+      </tbody>
+    </table>
+  </div>
 {% else %}
-    <p>No results found or query failed.</p>
+  <p class="text-hk-text mt-4">No results found or query failed.</p>
 {% endif %}
