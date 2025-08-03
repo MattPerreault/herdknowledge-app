@@ -1,42 +1,104 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>HerdKnowledge</title>
-    <link rel="stylesheet" href="/static/styles.css">
-    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+  <meta charset="UTF-8" />
+  <title>HerdKnowledge</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Tailwind with custom colors -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            hk: {
+              primary: '#4B6043',
+              secondary: '#CDAA7D',
+              accent: '#2B3A42',
+              link: '#C76A42',
+              background: '#FAECD3',
+              text: '#333333',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom styles (if needed) -->
+  <!-- <link rel="stylesheet" href="/static/styles.css" /> -->
+
+  <!-- HTMX -->
+  <script src="https://unpkg.com/htmx.org@1.9.2"></script>
 </head>
-<body>
-    <h1>Ask about Colorado Game Harvest or Population Data</h1>
-    <form hx-post="/ask" hx-target="#results" hx-swap="innerHTML">
-        <input type="text" name="question" placeholder="e.g. Elk harvest in 2023" required />
-        <button type="submit">Ask</button>
-        <span id="spinner">⏳ Searching...</span>
+
+<body class="bg-hk-background text-hk-text min-h-screen w-full">
+    <header class="bg-hk-primary text-white w-full">
+        <div class="max-w-3xl mx-auto px-4 py-3 flex justify-between items-center">
+            <h1 class="text-xl font-bold">HerdKnowledge</h1>
+            <span class="text-sm text-hk-secondary">Colorado Herd Data</span>
+        </div>
+    </header>
+
+  <main class="max-w-3xl mx-auto w-full px-4 py-10">
+    <!-- Content Column -->
+    <form 
+      hx-post="/ask" 
+      hx-target="#results" 
+      hx-swap="innerHTML" 
+      class="flex flex-col sm:flex-row gap-2 items-stretch mb-6"
+    >
+      <input 
+        type="text" 
+        name="question" 
+        placeholder="e.g. Elk harvest in 2023" 
+        required 
+        class="flex-1 px-4 py-2 border border-hk-secondary rounded-lg focus:ring-2 focus:ring-hk-primary outline-none"
+      />
+      <button 
+        type="submit" 
+        class="bg-hk-link text-white px-4 py-2 rounded-lg font-semibold hover:bg-orange-700"
+      >
+        Ask
+      </button>
+      <span id="spinner" class="text-sm text-hk-accent hidden ml-2">⏳ Searching...</span>
     </form>
 
-    <p>
+    <p class="text-sm text-hk-text mb-6">
         Try:
-        <span class="example-query" onclick="setQuestion('Elk harvest in 2023')">Elk harvest in 2023</span>
-        <span class="example-query" onclick="setQuestion('Deer population estimates for 2022')">Deer population estimates for 2022</span>
-    </p> 
+    <button 
+        onclick="setQuestion('Elk harvest in 2023')" 
+        class="text-sm bg-hk-secondary text-hk-accent rounded-full px-3 py-1 hover:bg-hk-primary hover:text-white cursor-pointer"
+    >
+        Elk harvest in 2023
+    </button>
+    <button 
+        onclick="setQuestion('Deer population estimates for 2022')" 
+        class="text-sm bg-hk-secondary text-hk-accent rounded-full px-3 py-1 hover:bg-hk-primary hover:text-white cursor-pointer"
+    >
+        Deer population estimates for 2022
+    </button>
+    </p>
 
-    <script>
-        function setQuestion(text) {
-            const input = document.querySelector('input[name="question"]');
-            input.value = text;
-        }
-    </script>
 
     <div id="results">
-        <!-- results will appear here -->
+      <!-- Results will appear here -->
     </div>
-    
-    <script>
-        document.body.addEventListener('htmx:request', function() {
-            document.getElementById('spinner').style.display = 'inline';
-        });
-        document.body.addEventListener('htmx:afterOnLoad', function() {
-            document.getElementById('spinner').style.display = 'none';
-        });
-    </script>
+  </main>
+
+  <script>
+    function setQuestion(text) {
+      const input = document.querySelector('input[name="question"]');
+      input.value = text;
+    }
+
+    document.body.addEventListener('htmx:request', function () {
+      document.getElementById('spinner').classList.remove('hidden');
+    });
+    document.body.addEventListener('htmx:afterOnLoad', function () {
+      document.getElementById('spinner').classList.add('hidden');
+    });
+  </script>
 </body>
 </html>
