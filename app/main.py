@@ -81,3 +81,13 @@ def ask_question(request: Request, question: str = Form(...)):
                 "rows": [],
             },
         )
+
+
+@app.get("/about", response_class=HTMLResponse)
+async def about(request: Request):
+    return templates.TemplateResponse("about.html", {"request": request})
+
+
+@app.get("/how-to", response_class=HTMLResponse)
+async def how_to(request: Request):
+    return templates.TemplateResponse("how_to.html", {"request": request})

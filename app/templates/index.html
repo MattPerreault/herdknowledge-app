@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>HerdKnowledge</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <link rel="icon" typ="image/png" href="/static/icons/binos.png"
   <!-- Tailwind with custom colors -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -34,12 +34,39 @@
 </head>
 
 <body class="bg-hk-background text-hk-text min-h-screen w-full">
-    <header class="bg-hk-primary text-white w-full">
-        <div class="max-w-3xl mx-auto px-4 py-3 flex justify-between items-center">
-            <h1 class="text-xl font-bold">HerdKnowledge</h1>
-            <span class="text-sm text-hk-secondary">Colorado Herd Data</span>
-        </div>
-    </header>
+
+  <header class="bg-hk-primary text-white w-full border-b border-hk-secondary shadow-md">
+    <div class="w-full px-4 py-3 flex items-center justify-between max-w-screen-xl mx-auto">
+
+      <!-- Brand Name -->
+      <div class="flex items-center">
+        <img 
+          src="/static/icons/brand_name.png" 
+          alt="HerdKnowledge Brand" 
+          class="h-12 w-auto"
+        />
+      </div>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden sm:flex items-center gap-6 text-xl font-medium whitespace-nowrap">
+        <a href="/about" class="hover:underline text-hk-secondary">About</a>
+        <a href="/how-to" class="hover:underline text-hk-secondary">?</a>
+      </nav>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-toggle" class="sm:hidden text-white focus:outline-none">
+            ☰
+        </button>
+    </div>
+
+    <!-- Mobile Nav Menu (hidden by default) -->
+    <div id="mobile-menu" class="sm:hidden hidden px-4 pb-4">
+        <a href="/about" class="block py-1 text-hk-secondary hover:underline">About</a>
+        <a href="/how-to" class="block py-1 text-hk-secondary hover:underline">How to Use</a>
+    </div>
+
+  </header>
+
 
   <main class="max-w-3xl mx-auto w-full px-4 py-10">
     <!-- Content Column -->
@@ -100,5 +127,17 @@
       document.getElementById('spinner').classList.add('hidden');
     });
   </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const toggleBtn = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        toggleBtn.addEventListener('click', function () {
+        mobileMenu.classList.toggle('hidden');
+        });
+    });
+  </script>
+
 </body>
 </html>
