@@ -4,11 +4,283 @@
   <meta charset="UTF-8" />
   <title>How to Use – HerdKnowledge</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" typ="image/png" href="/static/icons/binos.png" />
+  <!-- Tailwind with custom colors -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/static/tailwind-config.js"></script>
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="/static/styles.css" />
 </head>
-<body class="bg-hk-background text-hk-text min-h-screen flex flex-col items-center justify-center p-6">
-  <img src="/static/icons/map.png" alt="Coming Soon" class="w-auto h-20 mb-4" />
-  <h1 class="text-2xl font-semibold text-hk-primary mb-2">How to Use Page Coming Soon</h1>
-  <p class="text-center text-hk-text max-w-md">We’ll be adding tips, sample queries, and explanations of what you can ask and how it works.</p>
+
+<body class="bg-hk-background text-hk-text min-h-screen w-full">
+
+  <header class="bg-hk-primary text-white w-full border-b border-hk-secondary shadow-md">
+    <div class="w-full px-4 py-3 flex items-center justify-between max-w-screen-xl mx-auto">
+
+      <!-- Brand Name -->
+      <div class="flex items-center">
+        <a href="/">
+          <img 
+            src="/static/icons/brand_name.png" 
+            alt="HerdKnowledge Brand" 
+            class="h-12 w-auto"
+          />
+        </a>
+      </div>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden sm:flex items-center gap-6 text-xl font-medium whitespace-nowrap">
+        <a href="/about" class="hover:underline text-hk-secondary">About</a>
+        <a href="/how-to" class="hover:underline text-hk-secondary">How to Use</a>
+      </nav>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-toggle" class="sm:hidden text-white focus:outline-none">
+            ☰
+        </button>
+    </div>
+
+    <!-- Mobile Nav Menu (hidden by default) -->
+    <div id="mobile-menu" class="sm:hidden hidden px-4 pb-4">
+        <a href="/about" class="block py-1 text-hk-secondary hover:underline">About</a>
+        <a href="/how-to" class="block py-1 text-hk-secondary hover:underline">How to Use</a>
+    </div>
+
+  </header>
+
+  <main class="max-w-4xl mx-auto w-full px-4 py-10">
+    
+    <!-- Introduction Section -->
+    <section class="mb-10">
+      <div class="flex items-center gap-4 mb-6">
+        <img src="/static/icons/map.png" alt="Map Icon" class="w-auto h-20" />
+        <h1 class="text-4xl font-bold text-hk-primary">How to Use HerdKnowledge</h1>
+      </div>
+      <p class="text-lg text-hk-text mb-4">
+        HerdKnowledge lets you ask questions about Colorado Parks and Wildlife hunting data in plain English. 
+        No more scanning through PDFs on government websites—just ask what you need to know and get instant answers 
+        about harvest and population data.
+      </p>
+      <div class="bg-hk-secondary bg-opacity-20 rounded-lg p-4 border-l-4 border-hk-primary">
+        <p class="text-hk-text">
+          <strong>Data Source:</strong> This database contains Colorado Parks and Wildlife bow hunting 
+          harvest and population data for elk, deer, and pronghorn from 2019-2024.
+        </p>
+      </div>
+    </section>
+
+    <!-- Available Datasets Section -->
+    <section class="mb-10">
+      <h2 class="text-3xl font-semibold text-hk-primary mb-6">Available Datasets</h2>
+      
+      <div class="space-y-6">
+        <!-- Population Data -->
+        <div class="bg-white rounded-lg shadow-md p-6 border border-hk-secondary">
+          <h3 class="text-2xl font-semibold text-hk-accent mb-3">Population Data</h3>
+          <p class="text-hk-text mb-4">
+            The <code class="bg-hk-background px-2 py-1 rounded text-sm">population</code> table 
+            contains post-hunt population estimates and demographic information.
+          </p>
+          <div class="bg-hk-background rounded p-4 mb-4">
+            <p class="text-sm font-semibold text-hk-accent mb-2">Available Fields:</p>
+            <ul class="list-disc list-inside space-y-1 text-sm text-hk-text">
+              <li><strong>state</strong> - State code (e.g., 'co' for Colorado)</li>
+              <li><strong>species</strong> - Species name ('elk', 'deer', or 'pronghorn')</li>
+              <li><strong>herd_name</strong> - Specific herd identifier</li>
+              <li><strong>post_hunt_estimate</strong> - Population count after hunting season</li>
+              <li><strong>male_female_ratio</strong> - Gender ratio in the population</li>
+              <li><strong>year</strong> - Year of the data (2019-2024)</li>
+              <li><strong>unit</strong> - Game management unit number</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Harvest Data -->
+        <div class="bg-white rounded-lg shadow-md p-6 border border-hk-secondary">
+          <h3 class="text-2xl font-semibold text-hk-accent mb-3">Harvest Data</h3>
+          <p class="text-hk-text mb-4">
+            The <code class="bg-hk-background px-2 py-1 rounded text-sm">harvest</code> table 
+            contains detailed harvest statistics including success rates and hunter participation.
+          </p>
+          <div class="bg-hk-background rounded p-4 mb-4">
+            <p class="text-sm font-semibold text-hk-accent mb-2">Available Fields:</p>
+            <ul class="list-disc list-inside space-y-1 text-sm text-hk-text">
+              <li><strong>state</strong> - State code (e.g., 'co' for Colorado)</li>
+              <li><strong>species</strong> - Species name ('elk', 'deer', or 'pronghorn')</li>
+              <li><strong>year</strong> - Year of the data (2019-2024)</li>
+              <li><strong>season</strong> - Hunting season identifier</li>
+              <li><strong>unit</strong> - Game management unit number</li>
+              <li><strong>adult_male</strong> - Number of adult males harvested</li>
+              <li><strong>adult_female</strong> - Number of adult females harvested</li>
+              <li><strong>young</strong> - Number of young animals harvested</li>
+              <li><strong>total_harvest</strong> - Total animals harvested</li>
+              <li><strong>total_hunters</strong> - Number of hunters</li>
+              <li><strong>percent_success</strong> - Success rate percentage</li>
+              <li><strong>total_rec_days</strong> - Total recreation days</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Getting the Most from Your Queries Section -->
+    <section class="mb-10" id="getting-the-most">
+      <h2 class="text-3xl font-semibold text-hk-primary mb-6">Getting the Most from Your Queries</h2>
+      <p class="text-hk-text mb-4">
+        To get the most accurate and useful results, be specific in your questions by including 
+        the following filters:
+      </p>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-white rounded-lg shadow-md p-4 border border-hk-secondary">
+          <h4 class="font-semibold text-hk-accent mb-2">State</h4>
+          <p class="text-sm text-hk-text">Use "Colorado" or "CO" (data is primarily Colorado)</p>
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-4 border border-hk-secondary">
+          <h4 class="font-semibold text-hk-accent mb-2">Species</h4>
+          <p class="text-sm text-hk-text">Specify "elk", "deer", or "pronghorn"</p>
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-4 border border-hk-secondary">
+          <h4 class="font-semibold text-hk-accent mb-2">Year</h4>
+          <p class="text-sm text-hk-text">Use years 2019-2024</p>
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-4 border border-hk-secondary">
+          <h4 class="font-semibold text-hk-accent mb-2">Season</h4>
+          <p class="text-sm text-hk-text">Specify hunting season (for harvest data)</p>
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-4 border border-hk-secondary md:col-span-2">
+          <h4 class="font-semibold text-hk-accent mb-2">Unit</h4>
+          <p class="text-sm text-hk-text">Game management unit number (e.g., unit 10, unit 20)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Example Queries Section -->
+    <section class="mb-10">
+      <h2 class="text-3xl font-semibold text-hk-primary mb-6">Example Queries</h2>
+      
+      <!-- Population Examples -->
+      <div class="mb-8">
+        <h3 class="text-2xl font-semibold text-hk-accent mb-4">Population Examples</h3>
+        <div class="space-y-3">
+          <div class="bg-white rounded-lg shadow-md p-4 border-l-4 border-hk-link">
+            <p class="text-hk-text font-mono text-sm">"What is the population of elk in Colorado for 2024 in unit 10?"</p>
+          </div>
+          <div class="bg-white rounded-lg shadow-md p-4 border-l-4 border-hk-link">
+            <p class="text-hk-text font-mono text-sm">"Show me deer population estimates for 2023"</p>
+          </div>
+          <div class="bg-white rounded-lg shadow-md p-4 border-l-4 border-hk-link">
+            <p class="text-hk-text font-mono text-sm">"What are the elk populations by unit in Colorado for 2022?"</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Harvest Examples -->
+      <div class="mb-8">
+        <h3 class="text-2xl font-semibold text-hk-accent mb-4">Harvest Examples</h3>
+        <div class="space-y-3">
+          <div class="bg-white rounded-lg shadow-md p-4 border-l-4 border-hk-link">
+            <p class="text-hk-text font-mono text-sm">"What is the elk harvest in Colorado for 2024 in unit 10?"</p>
+          </div>
+          <div class="bg-white rounded-lg shadow-md p-4 border-l-4 border-hk-link">
+            <p class="text-hk-text font-mono text-sm">"Show me deer harvest statistics for 2023"</p>
+          </div>
+          <div class="bg-white rounded-lg shadow-md p-4 border-l-4 border-hk-link">
+            <p class="text-hk-text font-mono text-sm">"What was the total harvest and success rate for pronghorn in 2022?"</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Combined Examples -->
+      <div class="mb-8">
+        <h3 class="text-2xl font-semibold text-hk-accent mb-4">Combined Examples</h3>
+        <div class="space-y-3">
+          <div class="bg-white rounded-lg shadow-md p-4 border-l-4 border-hk-link">
+            <p class="text-hk-text font-mono text-sm">"What is the population of elk in Colorado for 2024 in unit 10 and what are the elk harvest statistics?"</p>
+          </div>
+          <div class="bg-white rounded-lg shadow-md p-4 border-l-4 border-hk-link">
+            <p class="text-hk-text font-mono text-sm">"Compare elk population and harvest data for Colorado unit 10 in 2023"</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filtered Examples -->
+      <div class="mb-8">
+        <h3 class="text-2xl font-semibold text-hk-accent mb-4">Filtered Examples</h3>
+        <div class="space-y-3">
+          <div class="bg-white rounded-lg shadow-md p-4 border-l-4 border-hk-link">
+            <p class="text-hk-text font-mono text-sm">"Elk harvest in Colorado for 2023 by unit"</p>
+          </div>
+          <div class="bg-white rounded-lg shadow-md p-4 border-l-4 border-hk-link">
+            <p class="text-hk-text font-mono text-sm">"Deer population estimates for Colorado in 2022"</p>
+          </div>
+          <div class="bg-white rounded-lg shadow-md p-4 border-l-4 border-hk-link">
+            <p class="text-hk-text font-mono text-sm">"Pronghorn harvest statistics for 2024"</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Data Scope & Limitations Section -->
+    <section class="mb-10">
+      <h2 class="text-3xl font-semibold text-hk-primary mb-6">Data Scope & Limitations</h2>
+      <div class="bg-hk-secondary bg-opacity-20 rounded-lg p-6 border-l-4 border-hk-primary">
+        <ul class="space-y-3 text-hk-text">
+          <li class="flex items-start">
+            <span class="text-hk-primary mr-2">•</span>
+            <span><strong>Source:</strong> Colorado Parks and Wildlife bow hunting data only</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-hk-primary mr-2">•</span>
+            <span><strong>Time Range:</strong> 2019-2024</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-hk-primary mr-2">•</span>
+            <span><strong>Species:</strong> elk, deer, and pronghorn</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-hk-primary mr-2">•</span>
+            <span><strong>Hunting Method:</strong> Bow hunting only</span>
+          </li>
+        </ul>
+      </div>
+      <div class="mt-6 bg-white rounded-lg shadow-md p-6 border border-hk-secondary">
+        <h3 class="text-xl font-semibold text-hk-accent mb-3">How It Works</h3>
+        <p class="text-hk-text mb-3">
+          We've pulled in all the available bow season harvest and population PDFs for elk, deer, and pronghorn 
+          from Colorado Parks and Wildlife into our database. Using natural language processing, we've made all 
+          that data easy to search. No more scanning through hundreds of pages on government websites.
+        </p>
+        <p class="text-hk-text mb-3">
+          Simply ask your questions in plain English and get instant answers. The system automatically:
+        </p>
+        <ul class="list-disc list-inside space-y-2 text-hk-text">
+          <li>Understands your questions and finds the right data</li>
+          <li>Filters results by species, year, state, and unit when you specify them</li>
+          <li>Returns clear, organized data tables</li>
+          <li>Limits results to keep responses manageable</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Back to Home Link -->
+    <div class="text-center mt-10">
+      <a href="/" class="inline-block bg-hk-link text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-700 transition-colors">
+        Try It Now
+      </a>
+    </div>
+
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const toggleBtn = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        toggleBtn.addEventListener('click', function () {
+        mobileMenu.classList.toggle('hidden');
+        });
+    });
+  </script>
+
 </body>
 </html>
