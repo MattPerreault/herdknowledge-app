@@ -4,30 +4,12 @@
   <meta charset="UTF-8" />
   <title>HerdKnowledge</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" typ="image/png" href="/static/icons/binos.png"
+  <link rel="icon" typ="image/png" href="/static/icons/binos.png" />
   <!-- Tailwind with custom colors -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            hk: {
-              primary: '#4B6043',
-              secondary: '#CDAA7D',
-              accent: '#2B3A42',
-              link: '#C76A42',
-              background: '#FAECD3',
-              text: '#333333',
-            }
-          }
-        }
-      }
-    }
-  </script>
-
-  <!-- Custom styles (if needed) -->
-  <!-- <link rel="stylesheet" href="/static/styles.css" /> -->
+  <script src="/static/tailwind-config.js"></script>
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="/static/styles.css" />
 
   <!-- HTMX -->
   <script src="https://unpkg.com/htmx.org@1.9.2"></script>
@@ -50,7 +32,7 @@
       <!-- Desktop Nav -->
       <nav class="hidden sm:flex items-center gap-6 text-xl font-medium whitespace-nowrap">
         <a href="/about" class="hover:underline text-hk-secondary">About</a>
-        <a href="/how-to" class="hover:underline text-hk-secondary">?</a>
+        <a href="/how-to" class="hover:underline text-hk-secondary">How to Use</a>
       </nav>
 
         <!-- Mobile Menu Button -->
@@ -108,10 +90,54 @@
     </button>
     </p>
 
-
-    <div id="results">
+    <div id="results" class="mb-6">
       <!-- Results will appear here -->
     </div>
+
+    <!-- Example Queries Section -->
+    <div class="mb-6">
+      <h3 class="text-xl font-semibold text-hk-primary mb-4">Example Queries</h3>
+      <div class="space-y-3">
+        <div class="bg-white rounded-lg shadow-md p-4 border-l-4 border-hk-link cursor-pointer hover:shadow-lg transition-shadow" onclick="setQuestion('What is the population of elk in Colorado for 2024 in unit 10?')">
+          <p class="text-hk-text font-mono text-sm">"What is the population of elk in Colorado for 2024 in unit 10?"</p>
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-4 border-l-4 border-hk-link cursor-pointer hover:shadow-lg transition-shadow" onclick="setQuestion('What is the elk harvest in Colorado for 2024 in unit 10?')">
+          <p class="text-hk-text font-mono text-sm">"What is the elk harvest in Colorado for 2024 in unit 10?"</p>
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-4 border-l-4 border-hk-link cursor-pointer hover:shadow-lg transition-shadow" onclick="setQuestion('What is the population of elk in Colorado for 2024 in unit 10 and what are the elk harvest statistics?')">
+          <p class="text-hk-text font-mono text-sm">"What is the population of elk in Colorado for 2024 in unit 10 and what are the elk harvest statistics?"</p>
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-4 border-l-4 border-hk-link cursor-pointer hover:shadow-lg transition-shadow" onclick="setQuestion('Show me deer harvest statistics for 2023')">
+          <p class="text-hk-text font-mono text-sm">"Show me deer harvest statistics for 2023"</p>
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-4 border-l-4 border-hk-link cursor-pointer hover:shadow-lg transition-shadow" onclick="setQuestion('Pronghorn harvest statistics for 2024')">
+          <p class="text-hk-text font-mono text-sm">"Pronghorn harvest statistics for 2024"</p>
+        </div>
+      </div>
+      <p class="text-sm text-hk-text mt-4 text-center">
+        <a href="/how-to#getting-the-most" class="text-hk-link hover:text-orange-700 font-semibold">View more examples →</a>
+      </p>
+    </div>
+
+    <!-- How it Works Section -->
+    <div class="bg-hk-secondary bg-opacity-20 rounded-lg p-6 border-l-4 border-hk-primary mb-6">
+      <h3 class="text-xl font-semibold text-hk-accent mb-3">How it Works</h3>
+      <p class="text-hk-text mb-3">
+        Ask questions in plain English and get instant answers about Colorado Parks and Wildlife 
+        hunting data. No more scanning through PDFs on government websites—just ask what you need 
+        to know about elk, deer, and pronghorn harvest and population data (2019-2024).
+      </p>
+      <p class="text-hk-text mb-4">
+        <strong>Tip:</strong> Be specific by including state, species, year, season, and unit for the best results.
+      </p>
+      <a 
+        href="/how-to" 
+        class="inline-block text-hk-link hover:text-orange-700 font-semibold text-sm"
+      >
+        Learn more about using HerdKnowledge →
+      </a>
+    </div>
+
   </main>
 
   <script>
