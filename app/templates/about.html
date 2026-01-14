@@ -11,9 +11,185 @@
   <!-- Custom styles -->
   <link rel="stylesheet" href="/static/styles.css" />
 </head>
-<body class="bg-hk-background text-hk-text min-h-screen flex flex-col items-center justify-center p-6">
-  <img src="/static/icons/binos.png" alt="Coming Soon" class="w-20 h-20 mb-4" />
-  <h1 class="text-2xl font-semibold text-hk-primary mb-2">About Page Coming Soon</h1>
-  <p class="text-center text-hk-text max-w-md">We're working hard to build out our mission, data sources, and background story. Stay tuned!</p>
+
+<body class="bg-hk-background text-hk-text min-h-screen w-full">
+
+  <header class="bg-hk-primary text-white w-full border-b border-hk-secondary shadow-md">
+    <div class="w-full px-4 py-3 flex items-center justify-between max-w-screen-xl mx-auto">
+
+      <!-- Brand Name -->
+      <div class="flex items-center">
+        <a href="/">
+          <img 
+            src="/static/icons/brand_name.png" 
+            alt="HerdKnowledge Brand" 
+            class="h-12 w-auto"
+          />
+        </a>
+      </div>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden sm:flex items-center gap-6 text-xl font-medium whitespace-nowrap">
+        <a href="/about" class="hover:underline text-hk-secondary">About</a>
+        <a href="/how-to" class="hover:underline text-hk-secondary">How to Use</a>
+      </nav>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-toggle" class="sm:hidden text-white focus:outline-none">
+            ☰
+        </button>
+    </div>
+
+    <!-- Mobile Nav Menu (hidden by default) -->
+    <div id="mobile-menu" class="sm:hidden hidden px-4 pb-4">
+        <a href="/about" class="block py-1 text-hk-secondary hover:underline">About</a>
+        <a href="/how-to" class="block py-1 text-hk-secondary hover:underline">How to Use</a>
+    </div>
+
+  </header>
+
+  <main class="max-w-4xl mx-auto w-full px-4 py-10">
+    
+    <!-- Introduction Section -->
+    <section class="mb-10">
+      <div class="flex items-center gap-4 mb-6">
+        <img src="/static/icons/binos.png" alt="Binoculars Icon" class="w-auto h-20" />
+        <h1 class="text-4xl font-bold text-hk-primary">About HerdKnowledge</h1>
+      </div>
+      <p class="text-lg text-hk-text mb-4">
+        HerdKnowledge was born from a simple frustration: Colorado Parks and Wildlife's hunting data 
+        is buried in massive PDFs that are nearly impossible to analyze. As a new hunter trying to plan 
+        a trip, I found myself downloading hundreds of pages, scrolling through inconsistent table formats, 
+        and manually copying data across multiple files just to answer basic questions.
+      </p>
+      <p class="text-lg text-hk-text mb-4">
+        As a data engineer, this was unacceptable. So I built HerdKnowledge to solve a real problem, not 
+        for profit, but because hunters deserve better access to the data that helps them make informed decisions.
+      </p>
+    </section>
+
+    <!-- The Problem Section -->
+    <section class="mb-10">
+      <h2 class="text-3xl font-semibold text-hk-primary mb-6">The Problem</h2>
+      <div class="bg-white rounded-lg shadow-md p-6 border border-hk-secondary">
+        <p class="text-hk-text mb-4">
+          Colorado Parks and Wildlife stores harvest statistics in massive PDFs spread across seasons, 
+          each hundreds of pages long with tables in inconsistent formats. Population data lives in 
+          another PDF with yet another layout. To get any historical insights, you have to:
+        </p>
+        <ul class="list-disc list-inside space-y-2 text-hk-text mb-4">
+          <li>Download multiple PDF files</li>
+          <li>Scroll to the specific season and species section</li>
+          <li>Copy numbers from inconsistent table formats</li>
+          <li>Repeat this process for population data</li>
+          <li>Do this for all available years just to get a complete picture</li>
+        </ul>
+        <p class="text-hk-text">
+          For a new hunter trying to compare success rates across units or understand population trends, 
+          this process is overwhelming and time-consuming.
+        </p>
+      </div>
+    </section>
+
+    <!-- The Solution Section -->
+    <section class="mb-10">
+      <h2 class="text-3xl font-semibold text-hk-primary mb-6">The Solution</h2>
+      <div class="bg-hk-secondary bg-opacity-20 rounded-lg p-6 border-l-4 border-hk-primary mb-6">
+        <p class="text-hk-text mb-4">
+          HerdKnowledge scrapes, cleans, and organizes all available Colorado Parks and Wildlife bow hunting 
+          harvest and population data into a searchable database. Using natural language processing, you can 
+          ask questions in plain English and get instant answers—no more scanning through PDFs.
+        </p>
+        <p class="text-hk-text">
+          What started as a way to plan a single hunting trip quickly turned into a data pipeline, and 
+          eventually became a public tool: HerdKnowledge.
+        </p>
+      </div>
+      <div class="bg-white rounded-lg shadow-md p-6 border border-hk-secondary">
+        <h3 class="text-xl font-semibold text-hk-accent mb-3">What I've Built</h3>
+        <ul class="list-disc list-inside space-y-2 text-hk-text">
+          <li>Natural language query interface for hunting data</li>
+          <li>Colorado bow hunting harvest data (2019-2024)</li>
+          <li>Colorado herd population estimates (2019-2024)</li>
+          <li>Support for elk, deer, and pronghorn data</li>
+          <li>Easy filtering by species, year, unit, and season</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- The Future Section -->
+    <section class="mb-10">
+      <h2 class="text-3xl font-semibold text-hk-primary mb-6">What's Next</h2>
+      <p class="text-lg text-hk-text mb-6">
+        HerdKnowledge isn't perfect, and I know there's room for improvement. I plan to iterate on it 
+        every chance I can. Here's what's coming:
+      </p>
+      <div class="grid md:grid-cols-2 gap-4 mb-6">
+        <div class="bg-white rounded-lg shadow-md p-6 border border-hk-secondary">
+          <h3 class="text-xl font-semibold text-hk-accent mb-3">More Data</h3>
+          <p class="text-hk-text">
+            I already have more big game data ready to load. I'll expand beyond Colorado archery data 
+            to include additional states, seasons, and hunting methods.
+          </p>
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-6 border border-hk-secondary">
+          <h3 class="text-xl font-semibold text-hk-accent mb-3">Mapping Features</h3>
+          <p class="text-hk-text">
+            Visualize data on interactive maps to see harvest patterns, population distributions, and 
+            success rates across game management units.
+          </p>
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-6 border border-hk-secondary md:col-span-2">
+          <h3 class="text-xl font-semibold text-hk-accent mb-3">Continuous Improvement</h3>
+          <p class="text-hk-text">
+            Better query understanding, more data sources, improved performance, and features based on 
+            user feedback. This is a labor of love, and I'm committed to making it better.
+          </p>
+        </div>
+      </div>
+      <div class="bg-hk-secondary bg-opacity-20 rounded-lg p-4 border-l-4 border-hk-primary">
+        <p class="text-hk-text">
+          <strong>Have suggestions?</strong> HerdKnowledge exists to serve the hunting community. 
+          If you have ideas for improvements or data sources you'd like to see, I'd love to hear from you.
+        </p>
+      </div>
+    </section>
+
+    <!-- Mission Statement Section -->
+    <section class="mb-10">
+      <h2 class="text-3xl font-semibold text-hk-primary mb-6">The Mission</h2>
+      <div class="bg-white rounded-lg shadow-md p-6 border border-hk-secondary">
+        <p class="text-lg text-hk-text mb-4">
+          HerdKnowledge exists to make wildlife management data accessible to everyone. I believe that 
+          hunters, researchers, and conservationists shouldn't have to fight with PDFs to understand 
+          harvest trends, population dynamics, or success rates.
+        </p>
+        <p class="text-hk-text">
+          This is a free, open tool built to solve a real problem. No paywalls, no data harvesting. 
+          Just better access to the information that helps us all make better decisions in the field.
+        </p>
+      </div>
+    </section>
+
+    <!-- Back to Home Link -->
+    <div class="text-center mt-10">
+      <a href="/" class="inline-block bg-hk-link text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-700 transition-colors">
+        Try HerdKnowledge
+      </a>
+    </div>
+
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const toggleBtn = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        toggleBtn.addEventListener('click', function () {
+        mobileMenu.classList.toggle('hidden');
+        });
+    });
+  </script>
+
 </body>
 </html>
